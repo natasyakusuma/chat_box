@@ -1,0 +1,3 @@
+ class GetChatList{
+  var repositories
+ }
