@@ -32,14 +32,14 @@ class _LoginPageState extends State<LoginPage>{
         ),
             ),
          SizedBox(height: 20),
-         ElevatedButton(
-           onPressed: (){
-             Navigator.push(context,
-             MaterialPageRoute(builder: context)=> ChatListPage(username: _usernameController.text));
-            }, child: Text('Login'),);
-            },
-            ],
-            ),
+          ElevatedButton(onPressed:(){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ChatListPage(username: _usernameController.text)),
+            );
+          },
+              child: Text('Login')),
+          ],
+      ),
       ),
     );
   }
