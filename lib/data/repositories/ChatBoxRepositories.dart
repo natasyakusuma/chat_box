@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import '../../domain/entities/ChatList.dart';
 import '../../domain/entities/User.dart';
 import '../data_sources/DataChatBox.dart';
 
@@ -25,4 +26,13 @@ class ChatBoxRepositories{
       print('${user} Ini dari repository');
       return user;
     }
+
+  Future<ChatList> getListName(String id) async {
+    var jsonResponse = jsonDecode(await dataChatBox.getListName(id))['data']; // getListname disini merupakan endpoint yg diambil dari data source yg bentuknya string untuk assign data mana yg ingin di decode jadi object dan di store didalam json response.
+    print('Server Response: $jsonResponse');
+
+    ChatList chatList = ChatList.fromJson(jsonResponse);
+    print('${chatList} Ini dari repository');
+    return chatList;
+  }
   }

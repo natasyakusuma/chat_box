@@ -1,22 +1,33 @@
-// import 'package:chat_box/domain/entities/ChatRoomPage.dart';
-//
-// class ChatList {
-//   String username;
-//   List<ChatRoom> chatrooms;
-//
-//   ChatList({required this.username, required this.chatrooms});
-//
-//   factory ChatList.fromJson(Map<String, dynamic> json) {
-//     return ChatList(
-//       username: json['username'],
-//       chatrooms: List<ChatRoom>.from(json['chatrooms'].map((x) => ChatRoom.fromJson(x))),
-//     );
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'username': this.username,
-//       'chatrooms': this.chatrooms.map((x) => x.toJson()).toList(),
-//     };
-//   }
-// }
+
+
+import 'ChatMessage.dart';
+
+
+class ChatList{
+  List<String> users;
+  List<ChatMessage> messages;
+  
+  ChatList({ required this.users, required this.messages});
+  
+  factory ChatList.fromJson(Map<String, dynamic> json){
+    print(json);
+    var user = <String>[];
+    for(var i = 0; i < json['users'].length; i++){
+      user.add(json['users'][i]); // ini bentuknya udah langsung string
+      print('User $i: ${json['users'][i]}');
+    }
+
+    var message = <ChatMessage>[];
+    for (var j = 0; j < json['messages'].length; j++){
+      message.add(ChatMessage.fromJson(json['messages'][j])); // karena ini masih bentuk objek
+      print('ChatMessage $j: ${json['messages'][j]}');
+    }
+
+    return ChatList(
+    users: user,
+    messages: message,
+  );
+    
+  }
+  
+}
